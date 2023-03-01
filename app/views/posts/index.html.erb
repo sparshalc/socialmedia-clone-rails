@@ -1,0 +1,76 @@
+<style>
+    .content{
+        position: absolute;
+        right: 0;
+    }
+    .ca{
+        width: 350px;
+        height: auto;
+    }
+    .card{
+        height: auto;
+        width: 250px;
+    }
+    .all{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .cardedit{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .jumbotron{
+      background-color: rgb(232, 232, 232);
+      border-radius: 15px;
+      padding: 15px 15px;
+    }
+    .card-img-top{
+      width: auto;
+      height: 200px;  
+      object-fit: cover;
+    }
+    .card{
+      overflow: hidden;
+      object-fit: cover;
+    }
+    .image1:hover{
+      width: 350px;
+    }
+</style>
+<div class="cent">
+    <div class="container mt-3">
+            <%= render 'posts/new', locals: { post: Post.new }, post: @post%>
+    </div>
+    <div class="container text-center">
+    </div>
+</div>
+<br>
+<div class="container cardedit">
+  <% @posts.each do |x|%>
+    <div class="text-center card my-4" style="width: 16rem;">
+      <% if x.image.present? %>
+        <%= link_to image_tag(x.image, width: '150px', class:'image1 card-img-top mt-2'),post_path(x.id)%>
+        <div class="card-body">
+          <h5 class="card-title text-center"><%= x.title %></h5>
+        </div>
+        <div> 
+          <% if current_user.id == x.user.id%>
+              <div class="container">
+                  <%= button_to post_path(x.id), method: :delete, data: { confirm: 'Are you sure?' },class: 'btn  w-100 btn-outline-danger' do%>
+                  <i class="fa fa-lg fa-trash"></i>
+                  <% end %>
+              </div>
+            <% else %>
+              <div class="container">
+                  <%= link_to post_path(x.id),class: 'btn  w-100 btn-outline-dark' do%>
+                  <i class="fa fa-lg fa-eye"></i>
+                  <% end %>
+              </div>
+          <% end %>
+        </div>
+        <br>
+      <% end %>
+    </div>
+  <% end %>
+</div>

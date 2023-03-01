@@ -1,0 +1,53 @@
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">Edit Post</h1>
+        <p class="col-lg-10 fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa velit maiores in sit voluptatem quae quasi quod amet sequi commodi magni hic, praesentium repudiandae temporibus odio minima omnis. Qui saepe corrupti fugit recusandae provident expedita!</p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+      <%= form_with model: @post do |x|%>
+      <h3 class="text-center">Edit Post</h3>
+      <br>
+        <form class="p-4 p-md-5 border rounded-3 bg-light">
+          <div class="form-floating mb-3">
+            <%= x.text_field :title,class: 'form-control'%>
+            <label>Title</label>
+            <% if @post.errors.any? %>
+            <div class="text">
+            <% @post.errors.full_messages_for(:title).each do |message| %>
+                  <div class="text-danger"><%= message %></div>
+            <% end %>
+            </div>
+            <% end %>
+          </div>
+          <div class=" mb-3">
+            <%= x.file_field :image,class: 'form-control'%>
+            <% if @post.errors.any? %>
+            <div class="text">
+            <% @post.errors.full_messages_for(:image).each do |message| %>
+                  <div class="text-danger"><%= message %></div>
+            <% end %>
+            </div>
+            <% end %>
+          </div>
+          <%= x.submit 'Create Post', class: "w-100 btn btn-lg btn-dark"%>
+  
+          <%= link_to 'Go Back',:back,class: 'w-100 btn btn-lg btn-outline-dark mt-2'%>
+          <hr class="my-4">
+          <small class="text-muted">Go back if you don't want to change it</small>
+        </form>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: "false" }) do |f| %>
+   <%= render "devise/shared/error_messages", resource: resource %>
+   <div class="row align-items-center g-lg-5 py-5">
+     <div class="col-lg-7 text-center text-lg-start">
+       <h1 class="display-4 fw-bold lh-1 mb-3">Login!</h1>
+       <p class="col-lg-10 fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione esse ducimus atque corporis incidunt numquam, repellat saepe inventore? Fugiat ipsa earum sed sunt ducimus. Molestias sint dolor totam quaerat ullam!</p>
+     </div>
+     <div class="col-md-10 mx-auto col-lg-5">
+       <form class="p-4 p-md-5 border rounded-3 bg-light">
+         <div class="form-floating mb-3">
+           <%= f.email_field :email, autofocus: true, autocomplete: "email",class: 'form-control' %>
+           <label for="floatingInput">Email address</label>
+         </div>
+         <div class="form-floating mb-3">
+           <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+           <label for="floatingPassword">Password</label>
+         </div>
+         <div class="checkbox mb-3">
+           <label>
+             <input type="checkbox" value="remember-me"> Remember me
+           </label>
+         </div>
+         <%= f.submit "Log in", class: 'w-100 btn btn-lg btn-dark' %>
+         <%= render "devise/shared/links" %>
+         <hr class="my-4">
+         <small class="text-muted">By clicking Login, you agree to the terms of use.</small>
+       </form>
+     </div>
+     <% end %>
+   </div>
+ </div>

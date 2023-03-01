@@ -1,0 +1,15 @@
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <%= image_tag('img/user.png', class:"d-block mx-lg-auto img-fluid")%>
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3"><%=  @user.email %></h1>
+        <h4 class="display-6  mb-3">Joined <%= time_ago_in_words(@user.created_at) + ' ago' %></h4>
+        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam possimus fugiat quia, animi recusandae non, officia magnam consectetur illo repudiandae nesciunt ut provident, laborum doloribus.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <%= link_to 'Back', root_path,class: 'btn btn-dark btn-lg px-4 me-md-2'%>
+        </div>
+      </div>
+    </div>
+  </div>

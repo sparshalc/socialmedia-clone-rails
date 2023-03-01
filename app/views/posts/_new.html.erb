@@ -1,12 +1,26 @@
 <div class="my-4  border-bottom">
     <h1 class="display-4 fw-bold text-center">New Post</h1>
-    <%= form_with model: post do |x|%>
+    <%= form_with model: @post do |x|%>
         <div class="col-lg-6 mx-auto">
         <p class="lead mb-4"></p>
             <%= x.label :title  %>
             <%= x.text_field :title,class: 'form-control'%>
+            <% if @post.errors.any? %>
+            <div class="text">
+            <% @post.errors.full_messages_for(:title).each do |message| %>
+                  <div class="text-danger"><%= message %></div>
+            <% end %>
+            </div>
+            <% end %>
             <%= x.label :image  %>
             <%= x.file_field :image,class: 'form-control mt-2'%>
+            <% if @post.errors.any? %>
+            <div class="text">
+            <% @post.errors.full_messages_for(:image).each do |message| %>
+                  <div class="text-danger"><%= message %></div>
+            <% end %>
+            </div>
+            <% end %>
         <div class="form-floating mb-3">
             <%= x.number_field :user_id, value: current_user.id,id: 'post_user_id', type: :hidden,class: 'form-control'%>
         </div>

@@ -8,7 +8,6 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <%= link_to image_tag('img/ruby.png',class: 'what'), posts_path %>
           <h4><a href="/posts" class="nav-link px-2 text-white">RailsBook</a></h4>
         </ul>
         <% if user_signed_in? %>
@@ -17,9 +16,9 @@
             <%= current_user.email %>
           </button>
           <ul class="dropdown-menu">
-            <li><%= link_to 'Edit', edit_user_registration_path,class:"dropdown-item"%></li>
+            <li><%= link_to 'Edit', main_app.edit_user_registration_path,class:"dropdown-item"%></li>
             
-           <li> <%= button_to 'Logout',destroy_user_session_path,class:'dropdown-item text-danger',method: :delete%></li>
+           <li> <%= button_to 'Logout',main_app.destroy_user_session_path,class:'dropdown-item text-danger',method: :delete%></li>
           </ul>
         </div>  
         <% else %>
@@ -29,6 +28,17 @@
         </div>
         <% end %>
 
+        <% if user_signed_in? %>
+           <% if (Notification.unread_count(current_user)) == 0 %>
+            <%= link_to notifications_path, class: 'btn btn-dark' do%> 
+              <i class="fa fa-lg  fa-bell-slash"></i>
+            <% end %>
+           <% else %>
+            <%= link_to notifications_path, class: 'btn btn-dark' do%> 
+              <i class="fa fa-lg  fa-bell"></i>
+            <% end %>
+           <% end %>
+        <% end %>
 
       </div>
     </div>

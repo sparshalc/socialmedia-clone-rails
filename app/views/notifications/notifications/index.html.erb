@@ -1,0 +1,34 @@
+<div class="notifications row">
+  <div class="heading clearfix">
+  </div>
+  <div class="list">
+    <% if @notifications.blank? %>
+      <div class="container">
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+          <h6 class="border-bottom pb-2 mb-0 text-center">No Notifications</h6>
+          <div class="d-flex text-muted pt-3">
+      </h3>
+    </div>
+    <% else %>
+      <% @notification_groups.each do |group, notifications| %>
+        <div class="notification-group">
+          <div class="group-title"></div>
+          <%= render notifications %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= paginate @notifications %>
+</div>
+<% if @notifications.present? %>
+  <div class="container media-right text-end">
+    <span class="media-right pull-xs-right">
+      <%= button_to t('notifications.clean_all'), notifications.clean_notifications_path, class: 'btn btn-sm btn-danger ', method: 'delete' %>
+    </span>
+  </div>
+<% end  %>
+<div class="container">
+  <%= link_to 'back', :back, class: 'btn btn-sm btn-dark mt-2' %>
+</div>
+
+

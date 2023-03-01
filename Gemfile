@@ -25,6 +25,8 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 
+gem 'notifications', '~> 1.1'
+
 
 gem 'devise'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]

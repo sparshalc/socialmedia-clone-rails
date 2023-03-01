@@ -1,5 +1,5 @@
 class PostsController < ApplicationController 
-    before_action :find_post, only: [:show,:edit,:update,:destroy]
+    before_action :find_post, only: [:show,:edit,:update,:destroy, :new]
     before_action :authenticate_user!
     before_action :correct_user,only: [:edit,:destroy,:update]
     def index
@@ -15,6 +15,8 @@ class PostsController < ApplicationController
         @post = Post.create(post_params)
         if @post.save
             redirect_to post_path(@post.id),notice: 'Posted!'
+        else
+            render :_new,status: :bad_request
         end
     end
 

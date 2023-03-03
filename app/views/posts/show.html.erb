@@ -10,8 +10,22 @@
         <h1 class="display-4 fw-bold lh-1"><%= @post.title %></h1>
         <h5 style="opacity: 0.5;">Created <%= time_ago_in_words(@post.created_at) + ' ago' %>  | <%= @post.user.email %></h5>
         <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae qui sequi iure quo incidunt? Ea ut at vitae et maxime laboriosam non voluptas sunt odit.</p>
+
+          <% if user_signed_in? %>
+          <% like = current_user.likes.find_by(post: @post)%>
+          <% if like.nil? %>
+            <%= button_to  likes_path, params: {like: {post_id: @post.id}},method: :post,class: 'btn btn-primary btn-sm', data: {'turbo-method': :post}, data: { turbo: "false" } do %>
+            <i class="fa fa-lg fa-thumbs-up"></i> <%= @post.likes.count%> Like
+            <% end %>
+          <% else %>
+              <%= button_to  like_path,method: :delete, data: {'turbo-method': :delete}, data: { turbo: "false" }, class: 'btn btn-outline-primary btn-sm' do %>
+              <i class="fa fa-lg fa-thumbs-down"></i><%= @post.likes.count%> Like
+            <% end %>    
+        <% end %> 
+        <% end %>
+<br>
         <% if current_user.id == @post.user.id%>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3 mt-3">
           <%= link_to posts_path, class:"btn btn-dark btn-lg px-4 me-md-2 fw-bold" do%>
               <i class="fa fa-lg fa-caret-left"></i>
           <% end %>
@@ -33,5 +47,9 @@
   </div>
 
 
-  <%= render 'comments/form'%>
+
+  <% if user_signed_in? %>
+    <%= render 'comments/form'%>
+  <% end %>
   <%= render 'comments/comment'%>
+

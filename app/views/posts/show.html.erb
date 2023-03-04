@@ -8,7 +8,7 @@
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
       <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
         <h1 class="display-4 fw-bold lh-1"><%= @post.title %></h1>
-        <h5 style="opacity: 0.5;">Created <%= time_ago_in_words(@post.created_at) + ' ago' %>  | <%= @post.user.email %></h5>
+        <h6 style="opacity: 0.5;">Created <%= time_ago_in_words(@post.created_at) + ' ago' %>  | <%= @post.user.email %>  | <%= pluralize(@post.views, 'view')%></h6>
         <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae qui sequi iure quo incidunt? Ea ut at vitae et maxime laboriosam non voluptas sunt odit.</p>
 
           <% if user_signed_in? %>
@@ -23,7 +23,7 @@
             <% end %>    
         <% end %> 
         <% end %>
-<br>
+              <br>
         <% if current_user.id == @post.user.id%>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3 mt-3">
           <%= link_to posts_path, class:"btn btn-dark btn-lg px-4 me-md-2 fw-bold" do%>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden ">
-          <%= image_tag(@post.image,class:"image rounded-lg-3")%>
+          <%= link_to image_tag(@post.image,class:"image rounded-lg-3"), @post.image%>
       </div>
     </div>
   </div>

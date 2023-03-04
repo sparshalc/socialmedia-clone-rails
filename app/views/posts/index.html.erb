@@ -38,6 +38,7 @@
       width: 350px;
     }
 </style>
+
 <div class="cent">
     <div class="container mt-3">
             <%= render 'posts/new', locals: { post: Post.new }%>
@@ -45,12 +46,13 @@
     <div class="container text-center">
     </div>
 </div>
+
 <br>
 <div class="container cardedit">
   <% @posts.each do |x|%>
     <div class="text-center card my-4" style="width: 16rem;">
       <% if x.image.present? %>
-        <%= link_to image_tag(x.image, width: '150px', class:'image1 card-img-top mt-2'),post_path(x.id)%>
+        <%= link_to image_tag(x.image, width: '150px', class:'image1 card-img-top mt-1 '),post_path(x.id)%>
         <div class="card-body">
           <h5 class="card-title text-center"><%= x.title %></h5>
         </div>
@@ -74,3 +76,5 @@
     </div>
   <% end %>
 </div>
+
+

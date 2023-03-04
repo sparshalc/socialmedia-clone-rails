@@ -15,4 +15,5 @@ class Comment < ApplicationRecord
     notificaion.second_target = self.post
   end
  end
+
 end

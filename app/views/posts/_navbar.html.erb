@@ -51,39 +51,6 @@
         <% end %>
       </div>
     </div>
-
-
-<% if current_page?(posts_path)  || current_page?(root_path)%>    
-   <div class="container">
-    <div class="navbar-nav ml-auto" id="navbarNav">
-        <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Users</button>
-
-        <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-          <div class="offcanvas-header">
-            <h5 class="fw-bold offcanvas-title text-center" id="offcanvasBottomLabel">Our Users</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body small">
-              <div class="useless">
-                <hr>
-                  <% @user.each do |x|%>
-                  <div class="d-flex text-muted mt-1">
-                  <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-                  <p class="pb-3 mb-0 small lh-sm border-bottom">
-                      <strong class="d-block text-gray-dark"><%=link_to x.email,people_path(x.id)%> </strong>
-                      Joined <%= time_ago_in_words(x.created_at) + ' ago'%>
-                  </p>
-                  </div>
-              <% end %>
-                  <small class="d-block text-center mt-1">
-                  <%= link_to 'View All', peoples_path,class:'btn btn-outline-dark' if @user.count > 5%>
-                  </small>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
-   <% end %>
   </header>
 
   

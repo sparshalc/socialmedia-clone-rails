@@ -53,7 +53,7 @@
     </div>
 
 
-<% if current_page?(posts_path)%>    
+<% if current_page?(posts_path)  || current_page?(root_path)%>    
    <div class="container">
     <div class="navbar-nav ml-auto" id="navbarNav">
         <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Users</button>
@@ -76,7 +76,7 @@
                   </div>
               <% end %>
                   <small class="d-block text-center mt-1">
-                  <%= link_to 'View All', peoples_path,class:'btn btn-outline-dark'%>
+                  <%= link_to 'View All', peoples_path,class:'btn btn-outline-dark' if @user.count > 5%>
                   </small>
               </div>
           </div>

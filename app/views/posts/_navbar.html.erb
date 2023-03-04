@@ -35,16 +35,16 @@
         <% if user_signed_in? %>
            <% if (Notification.unread_count(current_user)) == 0 %>
              <%= link_to notifications_path, class: 'btn btn-dark' do%> 
-               <i class="fas fa-envelope fa-2x"></i>           
+               <i class="fas fa-bell fa-2x"></i>           
               <% end %>
            <% elsif (Notification.unread_count(current_user)) < 9  %>
             <%= link_to notifications_path, class: 'btn btn-dark' do%> 
-                <i class="fas fa-envelope fa-2x"></i>
+                <i class="fas fa-bell fa-2x"></i>
                 <span class="badge rounded-pill badge-notification bg-danger"><%=(Notification.unread_count(current_user))   %></span>
             <% end %>
            <% else (Notification.unread_count(current_user)) > 9  %>
             <%= link_to notifications_path, class: 'btn btn-dark' do%> 
-                <i class="fas fa-envelope fa-2x"></i>
+                <i class="fas fa-bell fa-2x"></i>
                 <span class="badge rounded-pill badge-notification bg-danger">9+</span>
             <% end %>
             <% end %>

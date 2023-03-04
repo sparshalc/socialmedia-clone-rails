@@ -10,7 +10,6 @@
         <h1 class="display-4 fw-bold lh-1"><%= @post.title %></h1>
         <h6 style="opacity: 0.5;">Created <%= time_ago_in_words(@post.created_at) + ' ago' %>  | <%= @post.user.email %>  | <%= pluralize(@post.views, 'view')%></h6>
         <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae qui sequi iure quo incidunt? Ea ut at vitae et maxime laboriosam non voluptas sunt odit.</p>
-
           <% if user_signed_in? %>
           <% like = current_user.likes.find_by(post: @post)%>
           <% if like.nil? %>
@@ -46,10 +45,9 @@
     </div>
   </div>
 
+<% if user_signed_in? %>
+ <%= render 'comments/form'%>
+<% end %>
+<%= render'comments/comment'%>
 
-
-  <% if user_signed_in? %>
-    <%= render 'comments/form'%>
-  <% end %>
-  <%= render 'comments/comment'%>
 

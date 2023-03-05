@@ -2,19 +2,92 @@
   .d-block{
     width: 250px;
   }
+  .d-block:hover{
+    width: 251px;
+  }
+  .content{
+        position: absolute;
+        right: 0;
+    }
+    .ca{
+        width: 350px;
+        height: auto;
+    }
+    .card{
+        height: auto;
+        width: 250px;
+        margin: 15px 15px;
+    }
+    .all{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .cardedit{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .jumbotron{
+      background-color: rgb(232, 232, 232);
+      border-radius: 15px;
+      padding: 5px 5px;
+    }
+    .card-img-top{
+      width: auto;
+      height: 250px;  
+      object-fit: cover;
+    }
+    .card{
+      overflow: hidden;
+      object-fit: cover;
+    }
+    .image1:hover{
+      width: 260px;
+    }
+    .detail{
+      font-size: 16px;
+      background-color: #212529;
+      border-radius: 5px;
+      color: white;
+    }
 </style>
-<div class="container col-xxl-8 px-4 py-5">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-      <div class="col-10 col-sm-8 col-lg-6">
-        <%= image_tag('img/user.png', class:"d-block mx-lg-auto img-fluid")%>
-      </div>
-      <div class="col-lg-6">
-        <h1 class="display-5 fw-bold lh-1 mb-3"><%=  @user.email %></h1>
-        <h4 class="display-6  mb-3">Joined <%= time_ago_in_words(@user.created_at) + ' ago' %></h4>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam possimus fugiat quia, animi recusandae non, officia magnam consectetur illo repudiandae nesciunt ut provident, laborum doloribus.</p>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <%= link_to 'Back', root_path,class: 'btn btn-dark btn-lg px-4 me-md-2'%>
+<div class="container">
+  <div class="px-4 py-5 my-5 text-center">
+    <%= image_tag('img/user.png', class:"d-block mx-lg-auto img-fluid my-3")%>
+    <h1 class="display-5 fw-bold"><%=  @user.email %></h1>
+      <div class="col-lg-6 mx-auto">
+        <% if @user.posts.count == 0 %>
+          <p class="lead mb-4">Joined <%=  time_ago_in_words(@user.created_at) + ' ago' %>  | No Posts till now |  <%= @user.comments.count%> comments</p>
+        <% else %>
+        <p class="lead mb-4">Joined <%=  time_ago_in_words(@user.created_at) + ' ago' %>  | <%=  @user.posts.count %> posts | <%= @user.comments.count%> comments</p> 
+        <% end %>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <%= link_to 'Back', :back,class: 'btn btn-dark btn-lg px-4 gap-3'%>
         </div>
       </div>
     </div>
+</div>
+<% if @user.posts.present? %>
+  <div class="text-center container">
+    <hr>
+    <h1 class="fw-light">User Post's</h1>
+    <hr>
   </div>
+  <div class="container cardedit">
+    <% @user.posts.each do |x|%>
+      <div class="text-center card my-3" style="width: 16rem;">
+        <% if x.image.present? %>
+          <%= link_to image_tag(x.image, width: '150px', class:'image1 card-img-top mt-1 '),post_path(x.id)%>
+          <div class="card-body">
+            <h5 class="card-title text-center"><%= x.title %></h5>
+          </div>
+        <% end %>
+        <div class="container">
+          <div class=" detail ">
+            <p><%= pluralize(x.views, + 'view') %>  |  <%= pluralize(x.likes.count, + ' like') %>  |  <%= pluralize(x.comments.count, + ' comment') %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

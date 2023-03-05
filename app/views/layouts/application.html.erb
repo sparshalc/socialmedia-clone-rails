@@ -24,7 +24,7 @@
   </body>
   <footer>
     <div class="footer">
-      <%= render 'posts/footer' if current_page?(root_path) || current_page?(posts_path)%>
+      <%= render 'posts/footer'  if params[:controller] == 'posts' && params[:action] == 'index'%>
     </div>
   </footer>
 </html>

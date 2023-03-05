@@ -1,6 +1,6 @@
 <style>
     .image{
-        width: 400px;
+        width: 420px;
         height: auto;
     }
 </style>
@@ -13,12 +13,12 @@
           <% if user_signed_in? %>
           <% like = current_user.likes.find_by(post: @post)%>
           <% if like.nil? %>
-            <%= button_to  likes_path, params: {like: {post_id: @post.id}},method: :post,class: 'btn btn-primary btn-sm', data: {'turbo-method': :post}, data: { turbo: "false" } do %>
+            <%= button_to  likes_path, params: {like: {post_id: @post.id}},method: :post,class: 'btn btn-outline-dark ', data: {'turbo-method': :post}, data: { turbo: "false" } do %>
             <i class="fa fa-lg fa-thumbs-up"></i> <%= @post.likes.count%> Like
             <% end %>
           <% else %>
-              <%= button_to  like_path,method: :delete, data: {'turbo-method': :delete}, data: { turbo: "false" }, class: 'btn btn-outline-primary btn-sm' do %>
-              <i class="fa fa-lg fa-thumbs-down"></i><%= @post.likes.count%> Like
+              <%= button_to  like_path,method: :delete, data: {'turbo-method': :delete}, data: { turbo: "false" }, class: 'btn btn-dark ' do %>
+              <i class="fa fa-lg fa-thumbs-down"></i> <%= @post.likes.count%> Like
             <% end %>    
         <% end %> 
         <% end %>
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden ">
-          <%= link_to image_tag(@post.image,class:"image rounded-lg-3"), @post.image%>
+          <%= link_to image_tag(@post.image,class:"image rounded-lg-3"), @post.image, target: '_blank'%>
       </div>
     </div>
   </div>

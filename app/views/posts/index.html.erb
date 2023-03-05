@@ -10,6 +10,7 @@
     .card{
         height: auto;
         width: 250px;
+        margin: 15px 15px;
     }
     .all{
         display: flex;
@@ -23,11 +24,11 @@
     .jumbotron{
       background-color: rgb(232, 232, 232);
       border-radius: 15px;
-      padding: 15px 15px;
+      padding: 5px 5px;
     }
     .card-img-top{
       width: auto;
-      height: 200px;  
+      height: 250px;  
       object-fit: cover;
     }
     .card{
@@ -35,7 +36,7 @@
       object-fit: cover;
     }
     .image1:hover{
-      width: 350px;
+      width: 260px;
     }
 </style>
 
@@ -49,7 +50,7 @@
 <br>
 <div class="container cardedit">
   <% @posts.each do |x|%>
-    <div class="text-center card my-4" style="width: 16rem;">
+    <div class="text-center card my-3" style="width: 16rem;">
       <% if x.image.present? %>
         <%= link_to image_tag(x.image, width: '150px', class:'image1 card-img-top mt-1 '),post_path(x.id)%>
         <div class="card-body">

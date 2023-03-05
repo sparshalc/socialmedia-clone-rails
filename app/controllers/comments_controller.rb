@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
         @comment.user_id = current_user.id
         if @comment.save
             redirect_to post_path(@post.id),notice: ' Comment Added'
+        else
+            redirect_to post_path(@post.id),alert: "Comment can't be blank!"
         end
     end
 

@@ -59,7 +59,7 @@
         <% if @user.posts.count == 0 %>
           <p class="lead mb-4">Joined <%=  time_ago_in_words(@user.created_at) + ' ago' %>  | No Posts till now |  <%= @user.comments.count%> comments</p>
         <% else %>
-        <p class="lead mb-4">Joined <%=  time_ago_in_words(@user.created_at) + ' ago' %>  | <%=  @user.posts.count %> posts | <%= @user.comments.count%> comments</p> 
+        <p class="lead mb-4">Joined <%=  time_ago_in_words(@user.created_at) + ' ago' %>  | <a href="#scr"> <%= @user.posts.count %> Posts</a> | <%= @user.comments.count%> comments</p> 
         <% end %>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
           <%= link_to 'Back', :back,class: 'btn btn-dark btn-lg px-4 gap-3'%>
@@ -73,7 +73,7 @@
     <h1 class="fw-light">User Post's</h1>
     <hr>
   </div>
-  <div class="container cardedit">
+  <div class="container cardedit" id="scr">
     <% @user.posts.each do |x|%>
       <div class="text-center card my-3" style="width: 16rem;">
         <% if x.image.present? %>
